@@ -112,18 +112,26 @@ Formatting context ，页面中的一块渲染区域，并且有一套**渲染�
 ![image](https://mabiao8023.github.io/web-flex/float2.png)
 
 ---
+**如何选取方式生成BFC？**
+**各生成BFC方式的总结**
+- float:left 然而浮动元素有破坏性和包裹性，失去了元素本身的流体自适应性，因此，无法用来实现自动填满容器的自适应布局。
+- position:absolute 这个脱离文档流有些严重，我就不说什么了……关于定位又是一个比较复杂的布局方式
+- overflow:hidden 这个超棒的哦！不像浮动和绝对定位。也就是溢出剪裁什么的，本身还是个很普通的元素。
+- display:inline-block 会让元素尺寸包裹收缩，完全就不是我们想要的block水平的流动特性。
+- display:table-cell 让元素表现得像单元格一样，尺寸包裹收缩。
 
 **自适应两栏布局有很多的其他方法**
 
 #### 4、IFC
-**内联格式化上下文**,IFC线框高度由其包含行内元素中最高的实际高度计算而来的
+**内联格式化上下文**
 
 - 1.IFC中的line box一般左右都贴紧整个IFC，但是会因为float元素而扰乱。float元素会位于IFC与与line box之间，使得line box宽度缩短。 
 - 2.水平居中：当一个块要在水平居中时，设置为inline-block则会在外层产生IFC，通过text-align可以水平居中。
 - 3.垂直居中：创建一个IFC，用其中一个元素撑开父元素的高度，然后设置其vertical-align:middle，其他行内元素则可以在此父元素下垂直居中。
 
 #### 4、FFC
-(Flex Formatting Contexts)为"自适应格式化上下文"，
+**自适应格式化上下文**(Flex Formatting Contexts)，
+
 - display值为flex或者inline-flex的元素将生成ffc
 
 - display: flex 或 inline-flex得到一个伸缩容器。Flexbox 定义了伸缩容器内伸缩项目该如何布局。
@@ -144,8 +152,8 @@ transform:translate(-50%,-50%);
 方法2：
 ```
 .parent{
-justify-content:center;
-align-items:center;
+justify-content:center; //子元素水平居中
+align-items:center;     //子元素垂直居中
 display:-webkit-flex;
 }
 ```
